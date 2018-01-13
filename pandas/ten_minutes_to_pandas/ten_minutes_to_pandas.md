@@ -46,12 +46,12 @@ print(df)
                    '2013-01-05', '2013-01-06'],
                   dtype='datetime64[ns]', freq='D')
                        A         B         C         D
-    2013-01-01  0.519627  1.751828 -1.349693  1.876903
-    2013-01-02 -0.883766  0.926912  0.297259 -0.797213
-    2013-01-03 -0.909585  0.503203 -0.184375 -0.946056
-    2013-01-04 -0.129277 -2.050695 -0.457264  0.834746
-    2013-01-05  0.265509  1.403383 -0.611878 -0.132460
-    2013-01-06  1.090137  0.344091  0.075852  0.786603
+    2013-01-01 -0.653658 -0.412076  0.289240 -0.813057
+    2013-01-02 -0.000286 -1.257760 -1.232549 -0.899191
+    2013-01-03  0.404230 -0.880146 -1.593526  1.141695
+    2013-01-04  0.100815  1.143710  0.467192  0.014952
+    2013-01-05  0.944031 -0.653508  0.005439  0.316151
+    2013-01-06 -0.305994 -1.372941 -2.900295  0.220700
     
 
 也可以通过字典来创建DataFrame
@@ -64,80 +64,15 @@ df2=pd.DataFrame({'A':1.,
                  'D':np.array([3]*4,dtype='int32'),
                  'E':pd.Categorical(['test','train','test','train']),
                  'F':'foo'})
-df2
+print(df2)
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>E</th>
-      <th>F</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1.0</td>
-      <td>2013-01-02</td>
-      <td>1.0</td>
-      <td>3</td>
-      <td>test</td>
-      <td>foo</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1.0</td>
-      <td>2013-01-02</td>
-      <td>1.0</td>
-      <td>3</td>
-      <td>train</td>
-      <td>foo</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1.0</td>
-      <td>2013-01-02</td>
-      <td>1.0</td>
-      <td>3</td>
-      <td>test</td>
-      <td>foo</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1.0</td>
-      <td>2013-01-02</td>
-      <td>1.0</td>
-      <td>3</td>
-      <td>train</td>
-      <td>foo</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+         A          B    C  D      E    F
+    0  1.0 2013-01-02  1.0  3   test  foo
+    1  1.0 2013-01-02  1.0  3  train  foo
+    2  1.0 2013-01-02  1.0  3   test  foo
+    3  1.0 2013-01-02  1.0  3  train  foo
+    
 
 设置了特定的dtypes
 
@@ -169,15 +104,15 @@ print(df.tail(3))
 ```
 
                        A         B         C         D
-    2013-01-01  0.519627  1.751828 -1.349693  1.876903
-    2013-01-02 -0.883766  0.926912  0.297259 -0.797213
-    2013-01-03 -0.909585  0.503203 -0.184375 -0.946056
-    2013-01-04 -0.129277 -2.050695 -0.457264  0.834746
-    2013-01-05  0.265509  1.403383 -0.611878 -0.132460
+    2013-01-01 -0.653658 -0.412076  0.289240 -0.813057
+    2013-01-02 -0.000286 -1.257760 -1.232549 -0.899191
+    2013-01-03  0.404230 -0.880146 -1.593526  1.141695
+    2013-01-04  0.100815  1.143710  0.467192  0.014952
+    2013-01-05  0.944031 -0.653508  0.005439  0.316151
                        A         B         C         D
-    2013-01-04 -0.129277 -2.050695 -0.457264  0.834746
-    2013-01-05  0.265509  1.403383 -0.611878 -0.132460
-    2013-01-06  1.090137  0.344091  0.075852  0.786603
+    2013-01-04  0.100815  1.143710  0.467192  0.014952
+    2013-01-05  0.944031 -0.653508  0.005439  0.316151
+    2013-01-06 -0.305994 -1.372941 -2.900295  0.220700
     
 
 查看索引，列名，以及纯的NumPy数据
@@ -193,355 +128,77 @@ print(df.values)
                    '2013-01-05', '2013-01-06'],
                   dtype='datetime64[ns]', freq='D')
     Index(['A', 'B', 'C', 'D'], dtype='object')
-    [[ 0.51962678  1.75182761 -1.34969307  1.87690338]
-     [-0.88376601  0.92691199  0.29725942 -0.79721328]
-     [-0.90958483  0.50320274 -0.18437465 -0.94605639]
-     [-0.12927729 -2.05069512 -0.45726419  0.83474617]
-     [ 0.26550921  1.40338325 -0.61187759 -0.13246034]
-     [ 1.09013702  0.34409076  0.07585188  0.78660273]]
+    [[ -6.53658042e-01  -4.12076297e-01   2.89239645e-01  -8.13057346e-01]
+     [ -2.86361403e-04  -1.25775963e+00  -1.23254938e+00  -8.99191307e-01]
+     [  4.04229751e-01  -8.80146291e-01  -1.59352637e+00   1.14169486e+00]
+     [  1.00815285e-01   1.14370966e+00   4.67192499e-01   1.49516032e-02]
+     [  9.44030631e-01  -6.53507646e-01   5.43886068e-03   3.16151200e-01]
+     [ -3.05994200e-01  -1.37294092e+00  -2.90029481e+00   2.20700202e-01]]
     
 
 ```DataFrame.describe()```提供了便捷的数据统计
 
 
 ```python
-df.describe()
+print(df.describe())
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>6.000000</td>
-      <td>6.000000</td>
-      <td>6.000000</td>
-      <td>6.000000</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>-0.007893</td>
-      <td>0.479787</td>
-      <td>-0.371683</td>
-      <td>0.270420</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>0.794183</td>
-      <td>1.348580</td>
-      <td>0.583845</td>
-      <td>1.090657</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>-0.909585</td>
-      <td>-2.050695</td>
-      <td>-1.349693</td>
-      <td>-0.946056</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>-0.695144</td>
-      <td>0.383869</td>
-      <td>-0.573224</td>
-      <td>-0.631025</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>0.068116</td>
-      <td>0.715057</td>
-      <td>-0.320819</td>
-      <td>0.327071</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>0.456097</td>
-      <td>1.284265</td>
-      <td>0.010795</td>
-      <td>0.822710</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>1.090137</td>
-      <td>1.751828</td>
-      <td>0.297259</td>
-      <td>1.876903</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+                  A         B         C         D
+    count  6.000000  6.000000  6.000000  6.000000
+    mean   0.081523 -0.572120 -0.827417 -0.003125
+    std    0.556019  0.914615  1.316394  0.764447
+    min   -0.653658 -1.372941 -2.900295 -0.899191
+    25%   -0.229567 -1.163356 -1.503282 -0.606055
+    50%    0.050264 -0.766827 -0.613555  0.117826
+    75%    0.328376 -0.472434  0.218289  0.292288
+    max    0.944031  1.143710  0.467192  1.141695
+    
 
 转置矩阵
 
 
 ```python
-df.T
+print(df.T)
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>2013-01-01 00:00:00</th>
-      <th>2013-01-02 00:00:00</th>
-      <th>2013-01-03 00:00:00</th>
-      <th>2013-01-04 00:00:00</th>
-      <th>2013-01-05 00:00:00</th>
-      <th>2013-01-06 00:00:00</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>A</th>
-      <td>0.519627</td>
-      <td>-0.883766</td>
-      <td>-0.909585</td>
-      <td>-0.129277</td>
-      <td>0.265509</td>
-      <td>1.090137</td>
-    </tr>
-    <tr>
-      <th>B</th>
-      <td>1.751828</td>
-      <td>0.926912</td>
-      <td>0.503203</td>
-      <td>-2.050695</td>
-      <td>1.403383</td>
-      <td>0.344091</td>
-    </tr>
-    <tr>
-      <th>C</th>
-      <td>-1.349693</td>
-      <td>0.297259</td>
-      <td>-0.184375</td>
-      <td>-0.457264</td>
-      <td>-0.611878</td>
-      <td>0.075852</td>
-    </tr>
-    <tr>
-      <th>D</th>
-      <td>1.876903</td>
-      <td>-0.797213</td>
-      <td>-0.946056</td>
-      <td>0.834746</td>
-      <td>-0.132460</td>
-      <td>0.786603</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+       2013-01-01  2013-01-02  2013-01-03  2013-01-04  2013-01-05  2013-01-06
+    A   -0.653658   -0.000286    0.404230    0.100815    0.944031   -0.305994
+    B   -0.412076   -1.257760   -0.880146    1.143710   -0.653508   -1.372941
+    C    0.289240   -1.232549   -1.593526    0.467192    0.005439   -2.900295
+    D   -0.813057   -0.899191    1.141695    0.014952    0.316151    0.220700
+    
 
 沿某一轴排序
 
 
 ```python
-df.sort_index(axis=1,ascending=False)
+print(df.sort_index(axis=1,ascending=False))
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>D</th>
-      <th>C</th>
-      <th>B</th>
-      <th>A</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2013-01-01</th>
-      <td>1.876903</td>
-      <td>-1.349693</td>
-      <td>1.751828</td>
-      <td>0.519627</td>
-    </tr>
-    <tr>
-      <th>2013-01-02</th>
-      <td>-0.797213</td>
-      <td>0.297259</td>
-      <td>0.926912</td>
-      <td>-0.883766</td>
-    </tr>
-    <tr>
-      <th>2013-01-03</th>
-      <td>-0.946056</td>
-      <td>-0.184375</td>
-      <td>0.503203</td>
-      <td>-0.909585</td>
-    </tr>
-    <tr>
-      <th>2013-01-04</th>
-      <td>0.834746</td>
-      <td>-0.457264</td>
-      <td>-2.050695</td>
-      <td>-0.129277</td>
-    </tr>
-    <tr>
-      <th>2013-01-05</th>
-      <td>-0.132460</td>
-      <td>-0.611878</td>
-      <td>1.403383</td>
-      <td>0.265509</td>
-    </tr>
-    <tr>
-      <th>2013-01-06</th>
-      <td>0.786603</td>
-      <td>0.075852</td>
-      <td>0.344091</td>
-      <td>1.090137</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+                       D         C         B         A
+    2013-01-01 -0.813057  0.289240 -0.412076 -0.653658
+    2013-01-02 -0.899191 -1.232549 -1.257760 -0.000286
+    2013-01-03  1.141695 -1.593526 -0.880146  0.404230
+    2013-01-04  0.014952  0.467192  1.143710  0.100815
+    2013-01-05  0.316151  0.005439 -0.653508  0.944031
+    2013-01-06  0.220700 -2.900295 -1.372941 -0.305994
+    
 
 按照值进行排序
 
 
 ```python
-df.sort_values(by='B')
+print(df.sort_values(by='B'))
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2013-01-04</th>
-      <td>-0.129277</td>
-      <td>-2.050695</td>
-      <td>-0.457264</td>
-      <td>0.834746</td>
-    </tr>
-    <tr>
-      <th>2013-01-06</th>
-      <td>1.090137</td>
-      <td>0.344091</td>
-      <td>0.075852</td>
-      <td>0.786603</td>
-    </tr>
-    <tr>
-      <th>2013-01-03</th>
-      <td>-0.909585</td>
-      <td>0.503203</td>
-      <td>-0.184375</td>
-      <td>-0.946056</td>
-    </tr>
-    <tr>
-      <th>2013-01-02</th>
-      <td>-0.883766</td>
-      <td>0.926912</td>
-      <td>0.297259</td>
-      <td>-0.797213</td>
-    </tr>
-    <tr>
-      <th>2013-01-05</th>
-      <td>0.265509</td>
-      <td>1.403383</td>
-      <td>-0.611878</td>
-      <td>-0.132460</td>
-    </tr>
-    <tr>
-      <th>2013-01-01</th>
-      <td>0.519627</td>
-      <td>1.751828</td>
-      <td>-1.349693</td>
-      <td>1.876903</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+                       A         B         C         D
+    2013-01-06 -0.305994 -1.372941 -2.900295  0.220700
+    2013-01-02 -0.000286 -1.257760 -1.232549 -0.899191
+    2013-01-03  0.404230 -0.880146 -1.593526  1.141695
+    2013-01-05  0.944031 -0.653508  0.005439  0.316151
+    2013-01-01 -0.653658 -0.412076  0.289240 -0.813057
+    2013-01-04  0.100815  1.143710  0.467192  0.014952
+    
 
 ### 数据选择
 **注意：**尽管Python标准库和NumPy的语句在选择和设置数据时更直观和方便交互。但是在生产环境中，我们更建议使用Pandas的数据访问函数：```.at, .iat, .loc, .iloc, .ix```
@@ -557,12 +214,12 @@ df['A']
 
 
 
-    2013-01-01    0.519627
-    2013-01-02   -0.883766
-    2013-01-03   -0.909585
-    2013-01-04   -0.129277
-    2013-01-05    0.265509
-    2013-01-06    1.090137
+    2013-01-01   -0.653658
+    2013-01-02   -0.000286
+    2013-01-03    0.404230
+    2013-01-04    0.100815
+    2013-01-05    0.944031
+    2013-01-06   -0.305994
     Freq: D, Name: A, dtype: float64
 
 
@@ -576,13 +233,13 @@ print(df['20130102':'20130104'])
 ```
 
                        A         B         C         D
-    2013-01-01  0.519627  1.751828 -1.349693  1.876903
-    2013-01-02 -0.883766  0.926912  0.297259 -0.797213
-    2013-01-03 -0.909585  0.503203 -0.184375 -0.946056
+    2013-01-01 -0.653658 -0.412076  0.289240 -0.813057
+    2013-01-02 -0.000286 -1.257760 -1.232549 -0.899191
+    2013-01-03  0.404230 -0.880146 -1.593526  1.141695
                        A         B         C         D
-    2013-01-02 -0.883766  0.926912  0.297259 -0.797213
-    2013-01-03 -0.909585  0.503203 -0.184375 -0.946056
-    2013-01-04 -0.129277 -2.050695 -0.457264  0.834746
+    2013-01-02 -0.000286 -1.257760 -1.232549 -0.899191
+    2013-01-03  0.404230 -0.880146 -1.593526  1.141695
+    2013-01-04  0.100815  1.143710  0.467192  0.014952
     
 
 #### 根据标签选择
@@ -596,10 +253,10 @@ df.loc[dates[0]]
 
 
 
-    A    0.519627
-    B    1.751828
-    C   -1.349693
-    D    1.876903
+    A   -0.653658
+    B   -0.412076
+    C    0.289240
+    D   -0.813057
     Name: 2013-01-01 00:00:00, dtype: float64
 
 
@@ -608,124 +265,30 @@ df.loc[dates[0]]
 
 
 ```python
-df.loc[:,['A','B']]
+print(df.loc[:,['A','B']])
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2013-01-01</th>
-      <td>0.519627</td>
-      <td>1.751828</td>
-    </tr>
-    <tr>
-      <th>2013-01-02</th>
-      <td>-0.883766</td>
-      <td>0.926912</td>
-    </tr>
-    <tr>
-      <th>2013-01-03</th>
-      <td>-0.909585</td>
-      <td>0.503203</td>
-    </tr>
-    <tr>
-      <th>2013-01-04</th>
-      <td>-0.129277</td>
-      <td>-2.050695</td>
-    </tr>
-    <tr>
-      <th>2013-01-05</th>
-      <td>0.265509</td>
-      <td>1.403383</td>
-    </tr>
-    <tr>
-      <th>2013-01-06</th>
-      <td>1.090137</td>
-      <td>0.344091</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+                       A         B
+    2013-01-01 -0.653658 -0.412076
+    2013-01-02 -0.000286 -1.257760
+    2013-01-03  0.404230 -0.880146
+    2013-01-04  0.100815  1.143710
+    2013-01-05  0.944031 -0.653508
+    2013-01-06 -0.305994 -1.372941
+    
 
 用标签来切片时，端点的值都是被包含在内的
 
 
 ```python
-df.loc['20130102':'20130104',['A','B']]
+print(df.loc['20130102':'20130104',['A','B']])
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2013-01-02</th>
-      <td>-0.883766</td>
-      <td>0.926912</td>
-    </tr>
-    <tr>
-      <th>2013-01-03</th>
-      <td>-0.909585</td>
-      <td>0.503203</td>
-    </tr>
-    <tr>
-      <th>2013-01-04</th>
-      <td>-0.129277</td>
-      <td>-2.050695</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+                       A         B
+    2013-01-02 -0.000286 -1.257760
+    2013-01-03  0.404230 -0.880146
+    2013-01-04  0.100815  1.143710
+    
 
 选择的返回值可以降低维度
 
@@ -737,8 +300,8 @@ df.loc['20130102',['A','B']]
 
 
 
-    A   -0.883766
-    B    0.926912
+    A   -0.000286
+    B   -1.257760
     Name: 2013-01-02 00:00:00, dtype: float64
 
 
@@ -753,7 +316,7 @@ df.loc[dates[0],'A']
 
 
 
-    0.51962677829927584
+    -0.65365804231862046
 
 
 
@@ -767,7 +330,7 @@ df.at[dates[0],'A']
 
 
 
-    0.51962677829927584
+    -0.65365804231862046
 
 
 
@@ -782,10 +345,10 @@ df.iloc[3]
 
 
 
-    A   -0.129277
-    B   -2.050695
-    C   -0.457264
-    D    0.834746
+    A    0.100815
+    B    1.143710
+    C    0.467192
+    D    0.014952
     Name: 2013-01-04 00:00:00, dtype: float64
 
 
@@ -794,228 +357,54 @@ df.iloc[3]
 
 
 ```python
-df.iloc[3:5,0:2]
+print(df.iloc[3:5,0:2])
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2013-01-04</th>
-      <td>-0.129277</td>
-      <td>-2.050695</td>
-    </tr>
-    <tr>
-      <th>2013-01-05</th>
-      <td>0.265509</td>
-      <td>1.403383</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+                       A         B
+    2013-01-04  0.100815  1.143710
+    2013-01-05  0.944031 -0.653508
+    
 
 用整数列表来进行选择，与Python标准库和NumPy类似
 
 
 ```python
-df.iloc[[1,2,4],[0,2]]
+print(df.iloc[[1,2,4],[0,2]])
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>C</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2013-01-02</th>
-      <td>-0.883766</td>
-      <td>0.297259</td>
-    </tr>
-    <tr>
-      <th>2013-01-03</th>
-      <td>-0.909585</td>
-      <td>-0.184375</td>
-    </tr>
-    <tr>
-      <th>2013-01-05</th>
-      <td>0.265509</td>
-      <td>-0.611878</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+                       A         C
+    2013-01-02 -0.000286 -1.232549
+    2013-01-03  0.404230 -1.593526
+    2013-01-05  0.944031  0.005439
+    
 
 对行进行切片选择
 
 
 ```python
-df.iloc[1:3,:]
+print(df.iloc[1:3,:])
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2013-01-02</th>
-      <td>-0.883766</td>
-      <td>0.926912</td>
-      <td>0.297259</td>
-      <td>-0.797213</td>
-    </tr>
-    <tr>
-      <th>2013-01-03</th>
-      <td>-0.909585</td>
-      <td>0.503203</td>
-      <td>-0.184375</td>
-      <td>-0.946056</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+                       A         B         C         D
+    2013-01-02 -0.000286 -1.257760 -1.232549 -0.899191
+    2013-01-03  0.404230 -0.880146 -1.593526  1.141695
+    
 
 对列进行切片选择
 
 
 ```python
-df.iloc[:,1:3]
+print(df.iloc[:,1:3])
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>B</th>
-      <th>C</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2013-01-01</th>
-      <td>1.751828</td>
-      <td>-1.349693</td>
-    </tr>
-    <tr>
-      <th>2013-01-02</th>
-      <td>0.926912</td>
-      <td>0.297259</td>
-    </tr>
-    <tr>
-      <th>2013-01-03</th>
-      <td>0.503203</td>
-      <td>-0.184375</td>
-    </tr>
-    <tr>
-      <th>2013-01-04</th>
-      <td>-2.050695</td>
-      <td>-0.457264</td>
-    </tr>
-    <tr>
-      <th>2013-01-05</th>
-      <td>1.403383</td>
-      <td>-0.611878</td>
-    </tr>
-    <tr>
-      <th>2013-01-06</th>
-      <td>0.344091</td>
-      <td>0.075852</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+                       B         C
+    2013-01-01 -0.412076  0.289240
+    2013-01-02 -1.257760 -1.232549
+    2013-01-03 -0.880146 -1.593526
+    2013-01-04  1.143710  0.467192
+    2013-01-05 -0.653508  0.005439
+    2013-01-06 -1.372941 -2.900295
+    
 
 获取某个标量
 
@@ -1027,7 +416,7 @@ df.iloc[1,1]
 
 
 
-    0.92691199315835471
+    -1.257759630175423
 
 
 
@@ -1041,7 +430,7 @@ df.iat[1,1]
 
 
 
-    0.92691199315835471
+    -1.257759630175423
 
 
 
@@ -1050,146 +439,30 @@ df.iat[1,1]
 
 
 ```python
-df[df.A>0]
+print(df[df.A>0])
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2013-01-01</th>
-      <td>0.519627</td>
-      <td>1.751828</td>
-      <td>-1.349693</td>
-      <td>1.876903</td>
-    </tr>
-    <tr>
-      <th>2013-01-05</th>
-      <td>0.265509</td>
-      <td>1.403383</td>
-      <td>-0.611878</td>
-      <td>-0.132460</td>
-    </tr>
-    <tr>
-      <th>2013-01-06</th>
-      <td>1.090137</td>
-      <td>0.344091</td>
-      <td>0.075852</td>
-      <td>0.786603</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+                       A         B         C         D
+    2013-01-03  0.404230 -0.880146 -1.593526  1.141695
+    2013-01-04  0.100815  1.143710  0.467192  0.014952
+    2013-01-05  0.944031 -0.653508  0.005439  0.316151
+    
 
 从DataFrame中选择满足某条件的数据
 
 
 ```python
-df[df>0]
+print(df[df>0])
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2013-01-01</th>
-      <td>0.519627</td>
-      <td>1.751828</td>
-      <td>NaN</td>
-      <td>1.876903</td>
-    </tr>
-    <tr>
-      <th>2013-01-02</th>
-      <td>NaN</td>
-      <td>0.926912</td>
-      <td>0.297259</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2013-01-03</th>
-      <td>NaN</td>
-      <td>0.503203</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2013-01-04</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.834746</td>
-    </tr>
-    <tr>
-      <th>2013-01-05</th>
-      <td>0.265509</td>
-      <td>1.403383</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2013-01-06</th>
-      <td>1.090137</td>
-      <td>0.344091</td>
-      <td>0.075852</td>
-      <td>0.786603</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+                       A        B         C         D
+    2013-01-01       NaN      NaN  0.289240       NaN
+    2013-01-02       NaN      NaN       NaN       NaN
+    2013-01-03  0.404230      NaN       NaN  1.141695
+    2013-01-04  0.100815  1.14371  0.467192  0.014952
+    2013-01-05  0.944031      NaN  0.005439  0.316151
+    2013-01-06       NaN      NaN       NaN  0.220700
+    
 
 使用```isin()```函数来过滤数据
 
@@ -1198,68 +471,20 @@ df[df>0]
 df2=df.copy()
 df2['E']=['one','one','two','three','four','three']
 print(df2)
-df2[df2['E'].isin(['two','four'])]
+print(df2[df2['E'].isin(['two','four'])])
 ```
 
                        A         B         C         D      E
-    2013-01-01  0.519627  1.751828 -1.349693  1.876903    one
-    2013-01-02 -0.883766  0.926912  0.297259 -0.797213    one
-    2013-01-03 -0.909585  0.503203 -0.184375 -0.946056    two
-    2013-01-04 -0.129277 -2.050695 -0.457264  0.834746  three
-    2013-01-05  0.265509  1.403383 -0.611878 -0.132460   four
-    2013-01-06  1.090137  0.344091  0.075852  0.786603  three
+    2013-01-01 -0.653658 -0.412076  0.289240 -0.813057    one
+    2013-01-02 -0.000286 -1.257760 -1.232549 -0.899191    one
+    2013-01-03  0.404230 -0.880146 -1.593526  1.141695    two
+    2013-01-04  0.100815  1.143710  0.467192  0.014952  three
+    2013-01-05  0.944031 -0.653508  0.005439  0.316151   four
+    2013-01-06 -0.305994 -1.372941 -2.900295  0.220700  three
+                       A         B         C         D     E
+    2013-01-03  0.404230 -0.880146 -1.593526  1.141695   two
+    2013-01-05  0.944031 -0.653508  0.005439  0.316151  four
     
-
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>E</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2013-01-03</th>
-      <td>-0.909585</td>
-      <td>0.503203</td>
-      <td>-0.184375</td>
-      <td>-0.946056</td>
-      <td>two</td>
-    </tr>
-    <tr>
-      <th>2013-01-05</th>
-      <td>0.265509</td>
-      <td>1.403383</td>
-      <td>-0.611878</td>
-      <td>-0.132460</td>
-      <td>four</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 #### 设置数据
 设置一个新列并设置索引
@@ -1289,273 +514,51 @@ s1
 
 ```python
 df.at[dates[0],'A']=0
-df
+print(df)
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>F</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2013-01-01</th>
-      <td>0.000000</td>
-      <td>1.751828</td>
-      <td>-1.349693</td>
-      <td>1.876903</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2013-01-02</th>
-      <td>-0.883766</td>
-      <td>0.926912</td>
-      <td>0.297259</td>
-      <td>-0.797213</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-03</th>
-      <td>-0.909585</td>
-      <td>0.503203</td>
-      <td>-0.184375</td>
-      <td>-0.946056</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-04</th>
-      <td>-0.129277</td>
-      <td>-2.050695</td>
-      <td>-0.457264</td>
-      <td>0.834746</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-05</th>
-      <td>0.265509</td>
-      <td>1.403383</td>
-      <td>-0.611878</td>
-      <td>-0.132460</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-06</th>
-      <td>1.090137</td>
-      <td>0.344091</td>
-      <td>0.075852</td>
-      <td>0.786603</td>
-      <td>5.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+                       A         B         C         D    F
+    2013-01-01  0.000000 -0.412076  0.289240 -0.813057  NaN
+    2013-01-02 -0.000286 -1.257760 -1.232549 -0.899191  1.0
+    2013-01-03  0.404230 -0.880146 -1.593526  1.141695  2.0
+    2013-01-04  0.100815  1.143710  0.467192  0.014952  3.0
+    2013-01-05  0.944031 -0.653508  0.005439  0.316151  4.0
+    2013-01-06 -0.305994 -1.372941 -2.900295  0.220700  5.0
+    
 
 根据位置的来设置值
 
 
 ```python
 df.iat[0,1]=0
-df
+print(df)
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>F</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2013-01-01</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>-1.349693</td>
-      <td>1.876903</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2013-01-02</th>
-      <td>-0.883766</td>
-      <td>0.926912</td>
-      <td>0.297259</td>
-      <td>-0.797213</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-03</th>
-      <td>-0.909585</td>
-      <td>0.503203</td>
-      <td>-0.184375</td>
-      <td>-0.946056</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-04</th>
-      <td>-0.129277</td>
-      <td>-2.050695</td>
-      <td>-0.457264</td>
-      <td>0.834746</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-05</th>
-      <td>0.265509</td>
-      <td>1.403383</td>
-      <td>-0.611878</td>
-      <td>-0.132460</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-06</th>
-      <td>1.090137</td>
-      <td>0.344091</td>
-      <td>0.075852</td>
-      <td>0.786603</td>
-      <td>5.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+                       A         B         C         D    F
+    2013-01-01  0.000000  0.000000  0.289240 -0.813057  NaN
+    2013-01-02 -0.000286 -1.257760 -1.232549 -0.899191  1.0
+    2013-01-03  0.404230 -0.880146 -1.593526  1.141695  2.0
+    2013-01-04  0.100815  1.143710  0.467192  0.014952  3.0
+    2013-01-05  0.944031 -0.653508  0.005439  0.316151  4.0
+    2013-01-06 -0.305994 -1.372941 -2.900295  0.220700  5.0
+    
 
 使用NumPy数组来赋值
 
 
 ```python
 df.loc[:,'D']=np.array([5]*len(df))
-df
+print(df)
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>F</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2013-01-01</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>-1.349693</td>
-      <td>5</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2013-01-02</th>
-      <td>-0.883766</td>
-      <td>0.926912</td>
-      <td>0.297259</td>
-      <td>5</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-03</th>
-      <td>-0.909585</td>
-      <td>0.503203</td>
-      <td>-0.184375</td>
-      <td>5</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-04</th>
-      <td>-0.129277</td>
-      <td>-2.050695</td>
-      <td>-0.457264</td>
-      <td>5</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-05</th>
-      <td>0.265509</td>
-      <td>1.403383</td>
-      <td>-0.611878</td>
-      <td>5</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-06</th>
-      <td>1.090137</td>
-      <td>0.344091</td>
-      <td>0.075852</td>
-      <td>5</td>
-      <td>5.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+                       A         B         C  D    F
+    2013-01-01  0.000000  0.000000  0.289240  5  NaN
+    2013-01-02 -0.000286 -1.257760 -1.232549  5  1.0
+    2013-01-03  0.404230 -0.880146 -1.593526  5  2.0
+    2013-01-04  0.100815  1.143710  0.467192  5  3.0
+    2013-01-05  0.944031 -0.653508  0.005439  5  4.0
+    2013-01-06 -0.305994 -1.372941 -2.900295  5  5.0
+    
 
 在过滤的同时进行赋值
 
@@ -1563,91 +566,17 @@ df
 ```python
 df2=df.copy()
 df2[df2>0]=-df2
-df2
+print(df2)
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>F</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2013-01-01</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>-1.349693</td>
-      <td>-5</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2013-01-02</th>
-      <td>-0.883766</td>
-      <td>-0.926912</td>
-      <td>-0.297259</td>
-      <td>-5</td>
-      <td>-1.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-03</th>
-      <td>-0.909585</td>
-      <td>-0.503203</td>
-      <td>-0.184375</td>
-      <td>-5</td>
-      <td>-2.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-04</th>
-      <td>-0.129277</td>
-      <td>-2.050695</td>
-      <td>-0.457264</td>
-      <td>-5</td>
-      <td>-3.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-05</th>
-      <td>-0.265509</td>
-      <td>-1.403383</td>
-      <td>-0.611878</td>
-      <td>-5</td>
-      <td>-4.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-06</th>
-      <td>-1.090137</td>
-      <td>-0.344091</td>
-      <td>-0.075852</td>
-      <td>-5</td>
-      <td>-5.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+                       A         B         C  D    F
+    2013-01-01  0.000000  0.000000 -0.289240 -5  NaN
+    2013-01-02 -0.000286 -1.257760 -1.232549 -5 -1.0
+    2013-01-03 -0.404230 -0.880146 -1.593526 -5 -2.0
+    2013-01-04 -0.100815 -1.143710 -0.467192 -5 -3.0
+    2013-01-05 -0.944031 -0.653508 -0.005439 -5 -4.0
+    2013-01-06 -0.305994 -1.372941 -2.900295 -5 -5.0
+    
 
 ### 处理缺失数据
 Pandas主要使用```np.nan```来表示缺失数据。这个值不会加入在计算中。
@@ -1657,290 +586,54 @@ Pandas主要使用```np.nan```来表示缺失数据。这个值不会加入在�
 ```python
 df1=df.reindex(index=dates[0:4],columns=list(df.columns)+['E'])
 df1.loc[dates[0]:dates[1],'E']=1
-df1
+print(df1)
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>F</th>
-      <th>E</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2013-01-01</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>-1.349693</td>
-      <td>5</td>
-      <td>NaN</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-02</th>
-      <td>-0.883766</td>
-      <td>0.926912</td>
-      <td>0.297259</td>
-      <td>5</td>
-      <td>1.0</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-03</th>
-      <td>-0.909585</td>
-      <td>0.503203</td>
-      <td>-0.184375</td>
-      <td>5</td>
-      <td>2.0</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2013-01-04</th>
-      <td>-0.129277</td>
-      <td>-2.050695</td>
-      <td>-0.457264</td>
-      <td>5</td>
-      <td>3.0</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+                       A         B         C  D    F    E
+    2013-01-01  0.000000  0.000000  0.289240  5  NaN  1.0
+    2013-01-02 -0.000286 -1.257760 -1.232549  5  1.0  1.0
+    2013-01-03  0.404230 -0.880146 -1.593526  5  2.0  NaN
+    2013-01-04  0.100815  1.143710  0.467192  5  3.0  NaN
+    
 
 删除含有缺失数据的行
 
 
 ```python
-df1.dropna(how='any')
+print(df1.dropna(how='any'))
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>F</th>
-      <th>E</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2013-01-02</th>
-      <td>-0.883766</td>
-      <td>0.926912</td>
-      <td>0.297259</td>
-      <td>5</td>
-      <td>1.0</td>
-      <td>1.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+                       A        B         C  D    F    E
+    2013-01-02 -0.000286 -1.25776 -1.232549  5  1.0  1.0
+    
 
 填充缺失数据
 
 
 ```python
-df1.fillna(value=5)
+print(df1.fillna(value=5))
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>F</th>
-      <th>E</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2013-01-01</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>-1.349693</td>
-      <td>5</td>
-      <td>5.0</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-02</th>
-      <td>-0.883766</td>
-      <td>0.926912</td>
-      <td>0.297259</td>
-      <td>5</td>
-      <td>1.0</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-03</th>
-      <td>-0.909585</td>
-      <td>0.503203</td>
-      <td>-0.184375</td>
-      <td>5</td>
-      <td>2.0</td>
-      <td>5.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-04</th>
-      <td>-0.129277</td>
-      <td>-2.050695</td>
-      <td>-0.457264</td>
-      <td>5</td>
-      <td>3.0</td>
-      <td>5.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+                       A         B         C  D    F    E
+    2013-01-01  0.000000  0.000000  0.289240  5  5.0  1.0
+    2013-01-02 -0.000286 -1.257760 -1.232549  5  1.0  1.0
+    2013-01-03  0.404230 -0.880146 -1.593526  5  2.0  5.0
+    2013-01-04  0.100815  1.143710  0.467192  5  3.0  5.0
+    
 
 获取数据中是```nan```的位置
 
 
 ```python
-pd.isnull(df1)
+print(pd.isnull(df1))
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>F</th>
-      <th>E</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2013-01-01</th>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2013-01-02</th>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2013-01-03</th>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>2013-01-04</th>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+                    A      B      C      D      F      E
+    2013-01-01  False  False  False  False   True  False
+    2013-01-02  False  False  False  False  False  False
+    2013-01-03  False  False  False  False  False   True
+    2013-01-04  False  False  False  False  False   True
+    
 
 ### 基础操作
 #### 基本的统计
@@ -1955,9 +648,9 @@ df.mean()
 
 
 
-    A   -0.094497
-    B    0.187816
-    C   -0.371683
+    A    0.190466
+    B   -0.503441
+    C   -0.827417
     D    5.000000
     F    3.000000
     dtype: float64
@@ -1974,12 +667,12 @@ df.mean(1)
 
 
 
-    2013-01-01    0.912577
-    2013-01-02    1.268081
-    2013-01-03    1.281849
-    2013-01-04    1.072553
-    2013-01-05    2.011403
-    2013-01-06    2.302016
+    2013-01-01    1.322310
+    2013-01-02    0.701881
+    2013-01-03    0.986111
+    2013-01-04    1.942343
+    2013-01-05    1.859192
+    2013-01-06    1.084154
     Freq: D, dtype: float64
 
 
@@ -1990,7 +683,7 @@ df.mean(1)
 ```python
 s=pd.Series([1,3,5,np.nan,6,8],index=dates).shift(2)
 print(s)
-df.sub(s,axis='index')
+print(df.sub(s,axis='index'))
 ```
 
     2013-01-01    NaN
@@ -2000,90 +693,14 @@ df.sub(s,axis='index')
     2013-01-05    5.0
     2013-01-06    NaN
     Freq: D, dtype: float64
+                       A         B         C    D    F
+    2013-01-01       NaN       NaN       NaN  NaN  NaN
+    2013-01-02       NaN       NaN       NaN  NaN  NaN
+    2013-01-03 -0.595770 -1.880146 -2.593526  4.0  1.0
+    2013-01-04 -2.899185 -1.856290 -2.532808  2.0  0.0
+    2013-01-05 -4.055969 -5.653508 -4.994561  0.0 -1.0
+    2013-01-06       NaN       NaN       NaN  NaN  NaN
     
-
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>F</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2013-01-01</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2013-01-02</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2013-01-03</th>
-      <td>-1.909585</td>
-      <td>-0.496797</td>
-      <td>-1.184375</td>
-      <td>4.0</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-04</th>
-      <td>-3.129277</td>
-      <td>-5.050695</td>
-      <td>-3.457264</td>
-      <td>2.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-05</th>
-      <td>-4.734491</td>
-      <td>-3.596617</td>
-      <td>-5.611878</td>
-      <td>0.0</td>
-      <td>-1.0</td>
-    </tr>
-    <tr>
-      <th>2013-01-06</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 #### 应用函数
 对数据应用函数
@@ -2095,20 +712,20 @@ df.apply(lambda x:x.max()-x.min())
 ```
 
                        A         B         C   D     F
-    2013-01-01  0.000000  0.000000 -1.349693   5   NaN
-    2013-01-02 -0.883766  0.926912 -1.052434  10   1.0
-    2013-01-03 -1.793351  1.430115 -1.236808  15   3.0
-    2013-01-04 -1.922628 -0.620580 -1.694072  20   6.0
-    2013-01-05 -1.657119  0.782803 -2.305950  25  10.0
-    2013-01-06 -0.566982  1.126894 -2.230098  30  15.0
+    2013-01-01  0.000000  0.000000  0.289240   5   NaN
+    2013-01-02 -0.000286 -1.257760 -0.943310  10   1.0
+    2013-01-03  0.403943 -2.137906 -2.536836  15   3.0
+    2013-01-04  0.504759 -0.994196 -2.069644  20   6.0
+    2013-01-05  1.448789 -1.647704 -2.064205  25  10.0
+    2013-01-06  1.142795 -3.020645 -4.964500  30  15.0
     
 
 
 
 
-    A    1.999722
-    B    3.454078
-    C    1.646952
+    A    1.250025
+    B    2.516651
+    C    3.367487
     D    0.000000
     F    4.000000
     dtype: float64
@@ -2124,20 +741,22 @@ print(s)
 print(s.value_counts())
 ```
 
-    0    2
-    1    2
+    0    0
+    1    0
     2    4
-    3    2
-    4    4
-    5    2
-    6    1
-    7    4
-    8    1
-    9    3
+    3    1
+    4    6
+    5    6
+    6    4
+    7    3
+    8    5
+    9    1
     dtype: int32
-    2    4
-    4    3
+    6    2
+    4    2
     1    2
+    0    2
+    5    1
     3    1
     dtype: int64
     
@@ -2177,125 +796,32 @@ Pandas提供了许多工具来根据索引逻辑和线性代数关系组合Serie
 df=pd.DataFrame(np.random.randn(10,4))
 print(df)
 pieces=[df[:3],df[3:7],df[7:]]
-pd.concat(pieces)
+print(pd.concat(pieces))
 ```
 
               0         1         2         3
-    0 -1.185957  0.003406 -0.418602 -1.795964
-    1  1.476123  0.740420 -0.309832 -0.030821
-    2 -1.130280  1.407282  0.704248 -0.312520
-    3 -0.458707  0.406656  1.141934 -0.432106
-    4  2.310688  0.019981  2.008694  1.636378
-    5 -0.102571  1.274324 -0.336140  2.077588
-    6  0.394941 -0.198624  0.627003 -0.141601
-    7 -1.157877 -2.396454 -0.309037 -0.290056
-    8  0.778280 -1.036365 -1.471681 -0.482089
-    9  0.163682  1.242630  0.708397  0.579707
+    0  0.868667 -1.127783 -1.339226 -0.018955
+    1  2.154827 -0.183290  0.346383 -0.535674
+    2  0.539159  0.598349 -0.959137 -1.371542
+    3  0.526160 -0.675516  0.329515  2.741801
+    4 -0.672261  0.277084  0.246108 -0.058672
+    5  1.345204  0.267244 -0.976797  0.258268
+    6 -1.134643  0.736464  0.632367  0.355589
+    7 -0.388383  0.573309 -0.920222  1.232245
+    8 -0.394164 -0.492838 -0.036512  0.965029
+    9 -0.219411  1.003898 -0.033570  1.059801
+              0         1         2         3
+    0  0.868667 -1.127783 -1.339226 -0.018955
+    1  2.154827 -0.183290  0.346383 -0.535674
+    2  0.539159  0.598349 -0.959137 -1.371542
+    3  0.526160 -0.675516  0.329515  2.741801
+    4 -0.672261  0.277084  0.246108 -0.058672
+    5  1.345204  0.267244 -0.976797  0.258268
+    6 -1.134643  0.736464  0.632367  0.355589
+    7 -0.388383  0.573309 -0.920222  1.232245
+    8 -0.394164 -0.492838 -0.036512  0.965029
+    9 -0.219411  1.003898 -0.033570  1.059801
     
-
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>-1.185957</td>
-      <td>0.003406</td>
-      <td>-0.418602</td>
-      <td>-1.795964</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1.476123</td>
-      <td>0.740420</td>
-      <td>-0.309832</td>
-      <td>-0.030821</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>-1.130280</td>
-      <td>1.407282</td>
-      <td>0.704248</td>
-      <td>-0.312520</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>-0.458707</td>
-      <td>0.406656</td>
-      <td>1.141934</td>
-      <td>-0.432106</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2.310688</td>
-      <td>0.019981</td>
-      <td>2.008694</td>
-      <td>1.636378</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>-0.102571</td>
-      <td>1.274324</td>
-      <td>-0.336140</td>
-      <td>2.077588</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0.394941</td>
-      <td>-0.198624</td>
-      <td>0.627003</td>
-      <td>-0.141601</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>-1.157877</td>
-      <td>-2.396454</td>
-      <td>-0.309037</td>
-      <td>-0.290056</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>0.778280</td>
-      <td>-1.036365</td>
-      <td>-1.471681</td>
-      <td>-0.482089</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>0.163682</td>
-      <td>1.242630</td>
-      <td>0.708397</td>
-      <td>0.579707</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 #### 数据关联
 SQL形式
@@ -2306,7 +832,7 @@ left=pd.DataFrame({'key':['foo','foo'],'lval':[1,2]})
 right=pd.DataFrame({'key':['foo','foo'],'rval':[4,5]})
 print(left)
 print(right)
-pd.merge(left,right,on='key')
+print(pd.merge(left,right,on='key'))
 ```
 
        key  lval
@@ -2315,64 +841,12 @@ pd.merge(left,right,on='key')
        key  rval
     0  foo     4
     1  foo     5
+       key  lval  rval
+    0  foo     1     4
+    1  foo     1     5
+    2  foo     2     4
+    3  foo     2     5
     
-
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>key</th>
-      <th>lval</th>
-      <th>rval</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>foo</td>
-      <td>1</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>foo</td>
-      <td>1</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>foo</td>
-      <td>2</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>foo</td>
-      <td>2</td>
-      <td>5</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 
 ```python
@@ -2380,7 +854,7 @@ left=pd.DataFrame({'key':['foo','bar'],'lval':[1,2]})
 right=pd.DataFrame({'key':['foo','bar'],'rval':[4,5]})
 print(left)
 print(right)
-pd.merge(left,right,on='key')
+print(pd.merge(left,right,on='key'))
 ```
 
        key  lval
@@ -2389,52 +863,10 @@ pd.merge(left,right,on='key')
        key  rval
     0  foo     4
     1  bar     5
+       key  lval  rval
+    0  foo     1     4
+    1  bar     2     5
     
-
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>key</th>
-      <th>lval</th>
-      <th>rval</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>foo</td>
-      <td>1</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>bar</td>
-      <td>2</td>
-      <td>5</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 #### 添加数据（Append）
 给DataFrame添加行
@@ -2444,116 +876,29 @@ pd.merge(left,right,on='key')
 df=pd.DataFrame(np.random.randn(8,4),columns=['A','B','C','D'])
 print(df)
 s=df.iloc[3]
-df.append(s,ignore_index=True)
+print(df.append(s,ignore_index=True))
 ```
 
               A         B         C         D
-    0  0.003068 -0.485285 -0.419189  0.153555
-    1 -1.068066  0.369219  0.433112  0.430304
-    2  0.536439  0.036806 -0.482881 -1.012446
-    3  0.712923 -0.249292 -0.193645  1.042048
-    4  0.930002  1.783770  1.908079  0.554436
-    5  2.453541  0.256729  1.437505 -1.486410
-    6  0.175619  1.598335  1.988100 -2.324513
-    7 -2.079349  1.181692 -0.219713  0.994813
+    0 -0.379925 -1.017542 -0.189007 -0.428325
+    1 -0.276408 -0.715901 -1.319698 -0.222887
+    2  1.107723  0.353094  0.815195 -1.440487
+    3 -0.033881  0.514738  0.290243 -0.573637
+    4  0.425776 -0.074674 -0.002662  0.963586
+    5  1.982210  1.058390 -0.605711  0.338158
+    6  0.444923  0.802376  1.287365 -0.076757
+    7  1.079877  0.937892  1.511644 -1.344911
+              A         B         C         D
+    0 -0.379925 -1.017542 -0.189007 -0.428325
+    1 -0.276408 -0.715901 -1.319698 -0.222887
+    2  1.107723  0.353094  0.815195 -1.440487
+    3 -0.033881  0.514738  0.290243 -0.573637
+    4  0.425776 -0.074674 -0.002662  0.963586
+    5  1.982210  1.058390 -0.605711  0.338158
+    6  0.444923  0.802376  1.287365 -0.076757
+    7  1.079877  0.937892  1.511644 -1.344911
+    8 -0.033881  0.514738  0.290243 -0.573637
     
-
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.003068</td>
-      <td>-0.485285</td>
-      <td>-0.419189</td>
-      <td>0.153555</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>-1.068066</td>
-      <td>0.369219</td>
-      <td>0.433112</td>
-      <td>0.430304</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.536439</td>
-      <td>0.036806</td>
-      <td>-0.482881</td>
-      <td>-1.012446</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.712923</td>
-      <td>-0.249292</td>
-      <td>-0.193645</td>
-      <td>1.042048</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.930002</td>
-      <td>1.783770</td>
-      <td>1.908079</td>
-      <td>0.554436</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2.453541</td>
-      <td>0.256729</td>
-      <td>1.437505</td>
-      <td>-1.486410</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0.175619</td>
-      <td>1.598335</td>
-      <td>1.988100</td>
-      <td>-2.324513</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>-2.079349</td>
-      <td>1.181692</td>
-      <td>-0.219713</td>
-      <td>0.994813</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>0.712923</td>
-      <td>-0.249292</td>
-      <td>-0.193645</td>
-      <td>1.042048</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 ### 分组
 分组包含以下的一个或多个流程：
@@ -2567,230 +912,49 @@ df=pd.DataFrame({'A':['foo','bar','foo','bar','foo','bar','foo','foo'],'B' : ['o
                               'two', 'two', 'one', 'three'],
                        'C' : np.random.randn(8),
                       'D' : np.random.randn(8)})
-df
+print(df)
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>foo</td>
-      <td>one</td>
-      <td>0.924481</td>
-      <td>0.293714</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>bar</td>
-      <td>one</td>
-      <td>-0.513266</td>
-      <td>-0.765326</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>foo</td>
-      <td>two</td>
-      <td>-1.486644</td>
-      <td>0.240244</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>bar</td>
-      <td>three</td>
-      <td>0.839374</td>
-      <td>0.605076</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>foo</td>
-      <td>two</td>
-      <td>0.411683</td>
-      <td>-0.486882</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>bar</td>
-      <td>two</td>
-      <td>0.116702</td>
-      <td>0.541861</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>foo</td>
-      <td>one</td>
-      <td>0.617817</td>
-      <td>-0.383960</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>foo</td>
-      <td>three</td>
-      <td>-0.361919</td>
-      <td>-1.732078</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+         A      B         C         D
+    0  foo    one  0.596282  0.822393
+    1  bar    one -1.426678  0.106148
+    2  foo    two -0.776830 -0.496158
+    3  bar  three  0.954765  1.579897
+    4  foo    two -0.127376 -0.793390
+    5  bar    two -0.231712 -0.055958
+    6  foo    one  0.576690  0.757426
+    7  foo  three -1.365990 -1.358562
+    
 
 分组并对分组后的结果求和
 
 
 ```python
-df.groupby('A').sum()
+print(df.groupby('A').sum())
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-    <tr>
-      <th>A</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>bar</th>
-      <td>0.442810</td>
-      <td>0.381611</td>
-    </tr>
-    <tr>
-      <th>foo</th>
-      <td>0.105418</td>
-      <td>-2.068961</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+                C         D
+    A                      
+    bar -0.703626  1.630087
+    foo -1.097224 -1.068291
+    
 
 根据多个列进行分组可以如下操作
 
 
 ```python
-df.groupby(['A','B']).sum()
+print(df.groupby(['A','B']).sum())
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-    <tr>
-      <th>A</th>
-      <th>B</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th rowspan="3" valign="top">bar</th>
-      <th>one</th>
-      <td>-0.513266</td>
-      <td>-0.765326</td>
-    </tr>
-    <tr>
-      <th>three</th>
-      <td>0.839374</td>
-      <td>0.605076</td>
-    </tr>
-    <tr>
-      <th>two</th>
-      <td>0.116702</td>
-      <td>0.541861</td>
-    </tr>
-    <tr>
-      <th rowspan="3" valign="top">foo</th>
-      <th>one</th>
-      <td>1.542298</td>
-      <td>-0.090246</td>
-    </tr>
-    <tr>
-      <th>three</th>
-      <td>-0.361919</td>
-      <td>-1.732078</td>
-    </tr>
-    <tr>
-      <th>two</th>
-      <td>-1.074961</td>
-      <td>-0.246638</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+                      C         D
+    A   B                        
+    bar one   -1.426678  0.106148
+        three  0.954765  1.579897
+        two   -0.231712 -0.055958
+    foo one    1.172971  1.579818
+        three -1.365990 -1.358562
+        two   -0.904206 -1.289548
+    
 
 ### 改变数据形状
 #### 压缩
@@ -2805,72 +969,17 @@ print(tuples)
 index=pd.MultiIndex.from_tuples(tuples,names=['first','second'])
 df=pd.DataFrame(np.random.randn(8,2),index=index,columns=['A','B'])
 df2 = df[:4]
-df2
+print(df2)
 ```
 
     [('bar', 'one'), ('bar', 'two'), ('baz', 'one'), ('baz', 'two'), ('foo', 'one'), ('foo', 'two'), ('qux', 'one'), ('qux', 'two')]
+                         A         B
+    first second                    
+    bar   one    -0.482216 -1.720165
+          two    -1.788449 -0.475704
+    baz   one    -0.757266 -0.026047
+          two    -1.799689 -0.641557
     
-
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-    </tr>
-    <tr>
-      <th>first</th>
-      <th>second</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th rowspan="2" valign="top">bar</th>
-      <th>one</th>
-      <td>0.127572</td>
-      <td>-0.005527</td>
-    </tr>
-    <tr>
-      <th>two</th>
-      <td>0.128018</td>
-      <td>-2.473179</td>
-    </tr>
-    <tr>
-      <th rowspan="2" valign="top">baz</th>
-      <th>one</th>
-      <td>0.715606</td>
-      <td>-0.119786</td>
-    </tr>
-    <tr>
-      <th>two</th>
-      <td>-0.963227</td>
-      <td>0.960392</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 ```stack()```函数压缩了这个DataFrame中的一列
 
@@ -2884,14 +993,14 @@ stacked
 
 
     first  second   
-    bar    one     A    0.127572
-                   B   -0.005527
-           two     A    0.128018
-                   B   -2.473179
-    baz    one     A    0.715606
-                   B   -0.119786
-           two     A   -0.963227
-                   B    0.960392
+    bar    one     A   -0.482216
+                   B   -1.720165
+           two     A   -1.788449
+                   B   -0.475704
+    baz    one     A   -0.757266
+                   B   -0.026047
+           two     A   -1.799689
+                   B   -0.641557
     dtype: float64
 
 
@@ -2902,83 +1011,28 @@ stacked
 ```python
 print(stacked.unstack())
 print(stacked.unstack(1))
-stacked.unstack(0)
+print(stacked.unstack(0))
 ```
 
                          A         B
     first second                    
-    bar   one     0.127572 -0.005527
-          two     0.128018 -2.473179
-    baz   one     0.715606 -0.119786
-          two    -0.963227  0.960392
+    bar   one    -0.482216 -1.720165
+          two    -1.788449 -0.475704
+    baz   one    -0.757266 -0.026047
+          two    -1.799689 -0.641557
     second        one       two
     first                      
-    bar   A  0.127572  0.128018
-          B -0.005527 -2.473179
-    baz   A  0.715606 -0.963227
-          B -0.119786  0.960392
+    bar   A -0.482216 -1.788449
+          B -1.720165 -0.475704
+    baz   A -0.757266 -1.799689
+          B -0.026047 -0.641557
+    first          bar       baz
+    second                      
+    one    A -0.482216 -0.757266
+           B -1.720165 -0.026047
+    two    A -1.788449 -1.799689
+           B -0.475704 -0.641557
     
-
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>first</th>
-      <th>bar</th>
-      <th>baz</th>
-    </tr>
-    <tr>
-      <th>second</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th rowspan="2" valign="top">one</th>
-      <th>A</th>
-      <td>0.127572</td>
-      <td>0.715606</td>
-    </tr>
-    <tr>
-      <th>B</th>
-      <td>-0.005527</td>
-      <td>-0.119786</td>
-    </tr>
-    <tr>
-      <th rowspan="2" valign="top">two</th>
-      <th>A</th>
-      <td>0.128018</td>
-      <td>-0.963227</td>
-    </tr>
-    <tr>
-      <th>B</th>
-      <td>-2.473179</td>
-      <td>0.960392</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 #### 数据透视表
 
@@ -2989,233 +1043,43 @@ df=pd.DataFrame({'A':['one','one','two','three']*3,
                 'C':['foo', 'foo', 'foo', 'bar', 'bar', 'bar'] * 2,
                 'D':np.random.randn(12),
                 'E':np.random.randn(12)})
-df
+print(df)
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>E</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>one</td>
-      <td>A</td>
-      <td>foo</td>
-      <td>-0.900257</td>
-      <td>-1.200727</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>one</td>
-      <td>B</td>
-      <td>foo</td>
-      <td>0.120763</td>
-      <td>-2.006040</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>two</td>
-      <td>C</td>
-      <td>foo</td>
-      <td>0.375533</td>
-      <td>-1.210593</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>three</td>
-      <td>A</td>
-      <td>bar</td>
-      <td>1.201907</td>
-      <td>-1.089750</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>one</td>
-      <td>B</td>
-      <td>bar</td>
-      <td>-1.274266</td>
-      <td>0.536006</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>one</td>
-      <td>C</td>
-      <td>bar</td>
-      <td>-1.081125</td>
-      <td>-0.472602</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>two</td>
-      <td>A</td>
-      <td>foo</td>
-      <td>-1.307635</td>
-      <td>2.100175</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>three</td>
-      <td>B</td>
-      <td>foo</td>
-      <td>1.795790</td>
-      <td>-0.582945</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>one</td>
-      <td>C</td>
-      <td>foo</td>
-      <td>0.526311</td>
-      <td>0.831482</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>one</td>
-      <td>A</td>
-      <td>bar</td>
-      <td>1.533511</td>
-      <td>0.107257</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>two</td>
-      <td>B</td>
-      <td>bar</td>
-      <td>-1.183519</td>
-      <td>0.362868</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>three</td>
-      <td>C</td>
-      <td>bar</td>
-      <td>0.345764</td>
-      <td>-1.721186</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+            A  B    C         D         E
+    0     one  A  foo -0.652781 -0.720116
+    1     one  B  foo -0.515266  1.109243
+    2     two  C  foo  0.724732 -0.012487
+    3   three  A  bar  1.591435 -0.949670
+    4     one  B  bar  0.596480 -0.403556
+    5     one  C  bar -2.191866  0.291499
+    6     two  A  foo -0.835479 -0.749321
+    7   three  B  foo  0.147051 -0.299110
+    8     one  C  foo  0.519447 -0.016910
+    9     one  A  bar  0.482567 -2.322476
+    10    two  B  bar  0.350926  0.135206
+    11  three  C  bar  0.731305 -1.064031
+    
 
 我们可以非常简单的用上面的数据生成一张数据透视表:
 
 
 ```python
-pd.pivot_table(df,values='D',index=['A','B'],columns=['C'])
+print(pd.pivot_table(df,values='D',index=['A','B'],columns=['C']))
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>C</th>
-      <th>bar</th>
-      <th>foo</th>
-    </tr>
-    <tr>
-      <th>A</th>
-      <th>B</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th rowspan="3" valign="top">one</th>
-      <th>A</th>
-      <td>1.533511</td>
-      <td>-0.900257</td>
-    </tr>
-    <tr>
-      <th>B</th>
-      <td>-1.274266</td>
-      <td>0.120763</td>
-    </tr>
-    <tr>
-      <th>C</th>
-      <td>-1.081125</td>
-      <td>0.526311</td>
-    </tr>
-    <tr>
-      <th rowspan="3" valign="top">three</th>
-      <th>A</th>
-      <td>1.201907</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>B</th>
-      <td>NaN</td>
-      <td>1.795790</td>
-    </tr>
-    <tr>
-      <th>C</th>
-      <td>0.345764</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th rowspan="3" valign="top">two</th>
-      <th>A</th>
-      <td>NaN</td>
-      <td>-1.307635</td>
-    </tr>
-    <tr>
-      <th>B</th>
-      <td>-1.183519</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>C</th>
-      <td>NaN</td>
-      <td>0.375533</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+    C             bar       foo
+    A     B                    
+    one   A  0.482567 -0.652781
+          B  0.596480 -0.515266
+          C -2.191866  0.519447
+    three A  1.591435       NaN
+          B       NaN  0.147051
+          C  0.731305       NaN
+    two   A       NaN -0.835479
+          B  0.350926       NaN
+          C       NaN  0.724732
+    
 
 ### 时间序列
 Pandas拥有易用、强大且高效的方法来在频率变换中执行重采样操作（例如：把秒级别的数据转换成5分钟级别的数据）。这通常在金融应用中使用，但不仅限于金融应用。
@@ -3231,7 +1095,7 @@ ts.resample('5Min').sum()
 
 
 
-    2012-01-01    25205
+    2012-01-01    25308
     Freq: 5T, dtype: int32
 
 
@@ -3247,22 +1111,22 @@ ts_utc=ts.tz_localize('UTC')
 ts_utc
 ```
 
-    2012-03-06    0.009108
-    2012-03-07    0.600028
-    2012-03-08   -1.021904
-    2012-03-09   -1.091162
-    2012-03-10   -0.401636
+    2012-03-06    1.228351
+    2012-03-07   -0.699147
+    2012-03-08   -0.094176
+    2012-03-09    1.070865
+    2012-03-10    2.647150
     Freq: D, dtype: float64
     
 
 
 
 
-    2012-03-06 00:00:00+00:00    0.009108
-    2012-03-07 00:00:00+00:00    0.600028
-    2012-03-08 00:00:00+00:00   -1.021904
-    2012-03-09 00:00:00+00:00   -1.091162
-    2012-03-10 00:00:00+00:00   -0.401636
+    2012-03-06 00:00:00+00:00    1.228351
+    2012-03-07 00:00:00+00:00   -0.699147
+    2012-03-08 00:00:00+00:00   -0.094176
+    2012-03-09 00:00:00+00:00    1.070865
+    2012-03-10 00:00:00+00:00    2.647150
     Freq: D, dtype: float64
 
 
@@ -3277,11 +1141,11 @@ ts_utc.tz_convert('US/Eastern')
 
 
 
-    2012-03-05 19:00:00-05:00    0.009108
-    2012-03-06 19:00:00-05:00    0.600028
-    2012-03-07 19:00:00-05:00   -1.021904
-    2012-03-08 19:00:00-05:00   -1.091162
-    2012-03-09 19:00:00-05:00   -0.401636
+    2012-03-05 19:00:00-05:00    1.228351
+    2012-03-06 19:00:00-05:00   -0.699147
+    2012-03-07 19:00:00-05:00   -0.094176
+    2012-03-08 19:00:00-05:00    1.070865
+    2012-03-09 19:00:00-05:00    2.647150
     Freq: D, dtype: float64
 
 
@@ -3298,28 +1162,28 @@ print(ps)
 ps.to_timestamp()
 ```
 
-    2012-01-31   -0.949245
-    2012-02-29   -2.085967
-    2012-03-31   -0.737572
-    2012-04-30   -3.341330
-    2012-05-31   -0.255460
+    2012-01-31   -0.046642
+    2012-02-29    0.164101
+    2012-03-31    0.249671
+    2012-04-30    0.499200
+    2012-05-31    0.008723
     Freq: M, dtype: float64
-    2012-01   -0.949245
-    2012-02   -2.085967
-    2012-03   -0.737572
-    2012-04   -3.341330
-    2012-05   -0.255460
+    2012-01   -0.046642
+    2012-02    0.164101
+    2012-03    0.249671
+    2012-04    0.499200
+    2012-05    0.008723
     Freq: M, dtype: float64
     
 
 
 
 
-    2012-01-01   -0.949245
-    2012-02-01   -2.085967
-    2012-03-01   -0.737572
-    2012-04-01   -3.341330
-    2012-05-01   -0.255460
+    2012-01-01   -0.046642
+    2012-02-01    0.164101
+    2012-03-01    0.249671
+    2012-04-01    0.499200
+    2012-05-01    0.008723
     Freq: MS, dtype: float64
 
 
@@ -3402,77 +1266,17 @@ df['grade']
 
 
 ```python
-df.sort_values(by='grade')
+print(df.sort_values(by='grade'))
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>raw_grade</th>
-      <th>grade</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>5</th>
-      <td>6</td>
-      <td>e</td>
-      <td>very bad</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>b</td>
-      <td>good</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>b</td>
-      <td>good</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>a</td>
-      <td>very good</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>a</td>
-      <td>very good</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>a</td>
-      <td>very good</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+       id raw_grade      grade
+    5   6         e   very bad
+    1   2         b       good
+    2   3         b       good
+    0   1         a  very good
+    3   4         a  very good
+    4   5         a  very good
+    
 
 对标签数据分组时同样会显示空标签
 
@@ -3506,7 +1310,7 @@ ts.plot()
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x1ec612839e8>
+    <matplotlib.axes._subplots.AxesSubplot at 0x18a4171d240>
 
 
 
@@ -3527,7 +1331,7 @@ df.plot()
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x1ec612c77f0>
+    <matplotlib.axes._subplots.AxesSubplot at 0x18a447b0ba8>
 
 
 
@@ -3549,123 +1353,21 @@ df.to_csv('foo.csv')
 
 ```python
 df=pd.read_csv('foo.csv')
-df[:10]
+print(df[:10])
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Unnamed: 0</th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2000-01-01</td>
-      <td>-0.528247</td>
-      <td>-0.209999</td>
-      <td>-0.043510</td>
-      <td>0.123380</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2000-01-02</td>
-      <td>-1.514937</td>
-      <td>-1.064525</td>
-      <td>0.075450</td>
-      <td>0.094459</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2000-01-03</td>
-      <td>-1.411570</td>
-      <td>0.231791</td>
-      <td>1.362177</td>
-      <td>-0.033032</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2000-01-04</td>
-      <td>1.119268</td>
-      <td>0.505452</td>
-      <td>2.753380</td>
-      <td>0.013597</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2000-01-05</td>
-      <td>2.013427</td>
-      <td>-1.376394</td>
-      <td>3.677715</td>
-      <td>-1.126888</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2000-01-06</td>
-      <td>2.035195</td>
-      <td>-2.420584</td>
-      <td>3.490065</td>
-      <td>-0.365329</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>2000-01-07</td>
-      <td>1.274136</td>
-      <td>-2.091498</td>
-      <td>0.457607</td>
-      <td>1.494108</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>2000-01-08</td>
-      <td>0.428085</td>
-      <td>-3.537898</td>
-      <td>-0.797438</td>
-      <td>1.699856</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>2000-01-09</td>
-      <td>0.717784</td>
-      <td>-4.112115</td>
-      <td>-0.392448</td>
-      <td>0.568738</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>2000-01-10</td>
-      <td>0.789249</td>
-      <td>-3.830854</td>
-      <td>-1.106106</td>
-      <td>0.452820</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+       Unnamed: 0         A         B         C         D
+    0  2000-01-01  0.573685  0.254583 -1.007374  0.475982
+    1  2000-01-02  0.027795  2.640388 -0.866092 -1.642860
+    2  2000-01-03 -1.298852  2.205553 -1.189777 -1.829773
+    3  2000-01-04 -0.350564  0.717657 -1.497301 -3.179510
+    4  2000-01-05  1.732001  1.939669 -2.658425 -4.195840
+    5  2000-01-06  0.457319  2.281939 -1.612770 -4.582275
+    6  2000-01-07  0.571856  2.053347 -3.937807 -5.300862
+    7  2000-01-08  3.242640  2.280455 -4.378306 -5.054595
+    8  2000-01-09  2.884421  2.906835 -3.156276 -5.133953
+    9  2000-01-10  2.486527  3.205170 -3.407170 -5.450735
+    
 
 #### HDF5
 生成HDF5存储（需要安装tables库 ```pip3 install tables```）
@@ -3680,123 +1382,21 @@ df.to_hdf('foo.h5','df')
 
 ```python
 df=pd.read_hdf('foo.h5','df')
-df[:10]
+print(df[:10])
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Unnamed: 0</th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2000-01-01</td>
-      <td>-0.528247</td>
-      <td>-0.209999</td>
-      <td>-0.043510</td>
-      <td>0.123380</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2000-01-02</td>
-      <td>-1.514937</td>
-      <td>-1.064525</td>
-      <td>0.075450</td>
-      <td>0.094459</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2000-01-03</td>
-      <td>-1.411570</td>
-      <td>0.231791</td>
-      <td>1.362177</td>
-      <td>-0.033032</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2000-01-04</td>
-      <td>1.119268</td>
-      <td>0.505452</td>
-      <td>2.753380</td>
-      <td>0.013597</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2000-01-05</td>
-      <td>2.013427</td>
-      <td>-1.376394</td>
-      <td>3.677715</td>
-      <td>-1.126888</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2000-01-06</td>
-      <td>2.035195</td>
-      <td>-2.420584</td>
-      <td>3.490065</td>
-      <td>-0.365329</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>2000-01-07</td>
-      <td>1.274136</td>
-      <td>-2.091498</td>
-      <td>0.457607</td>
-      <td>1.494108</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>2000-01-08</td>
-      <td>0.428085</td>
-      <td>-3.537898</td>
-      <td>-0.797438</td>
-      <td>1.699856</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>2000-01-09</td>
-      <td>0.717784</td>
-      <td>-4.112115</td>
-      <td>-0.392448</td>
-      <td>0.568738</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>2000-01-10</td>
-      <td>0.789249</td>
-      <td>-3.830854</td>
-      <td>-1.106106</td>
-      <td>0.452820</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+       Unnamed: 0         A         B         C         D
+    0  2000-01-01  0.573685  0.254583 -1.007374  0.475982
+    1  2000-01-02  0.027795  2.640388 -0.866092 -1.642860
+    2  2000-01-03 -1.298852  2.205553 -1.189777 -1.829773
+    3  2000-01-04 -0.350564  0.717657 -1.497301 -3.179510
+    4  2000-01-05  1.732001  1.939669 -2.658425 -4.195840
+    5  2000-01-06  0.457319  2.281939 -1.612770 -4.582275
+    6  2000-01-07  0.571856  2.053347 -3.937807 -5.300862
+    7  2000-01-08  3.242640  2.280455 -4.378306 -5.054595
+    8  2000-01-09  2.884421  2.906835 -3.156276 -5.133953
+    9  2000-01-10  2.486527  3.205170 -3.407170 -5.450735
+    
 
 #### Excel
 生成Excel文件（需要安装openpyxl库```pip3 install openpyxl```）
@@ -3810,120 +1410,19 @@ df.to_excel('foo.xlsx',sheet_name='Sheet01')
 
 
 ```python
-pd.read_excel('foo.xlsx','Sheet01',index_col=None,na_values=['NA'])[:10]
+print(pd.read_excel('foo.xlsx', 'Sheet01',
+                    index_col=None, na_values=['NA'])[:10])
 ```
 
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Unnamed: 0</th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2000-01-01</td>
-      <td>-0.528247</td>
-      <td>-0.209999</td>
-      <td>-0.043510</td>
-      <td>0.123380</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2000-01-02</td>
-      <td>-1.514937</td>
-      <td>-1.064525</td>
-      <td>0.075450</td>
-      <td>0.094459</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2000-01-03</td>
-      <td>-1.411570</td>
-      <td>0.231791</td>
-      <td>1.362177</td>
-      <td>-0.033032</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2000-01-04</td>
-      <td>1.119268</td>
-      <td>0.505452</td>
-      <td>2.753380</td>
-      <td>0.013597</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2000-01-05</td>
-      <td>2.013427</td>
-      <td>-1.376394</td>
-      <td>3.677715</td>
-      <td>-1.126888</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2000-01-06</td>
-      <td>2.035195</td>
-      <td>-2.420584</td>
-      <td>3.490065</td>
-      <td>-0.365329</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>2000-01-07</td>
-      <td>1.274136</td>
-      <td>-2.091498</td>
-      <td>0.457607</td>
-      <td>1.494108</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>2000-01-08</td>
-      <td>0.428085</td>
-      <td>-3.537898</td>
-      <td>-0.797438</td>
-      <td>1.699856</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>2000-01-09</td>
-      <td>0.717784</td>
-      <td>-4.112115</td>
-      <td>-0.392448</td>
-      <td>0.568738</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>2000-01-10</td>
-      <td>0.789249</td>
-      <td>-3.830854</td>
-      <td>-1.106106</td>
-      <td>0.452820</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+       Unnamed: 0         A         B         C         D
+    0  2000-01-01  0.573685  0.254583 -1.007374  0.475982
+    1  2000-01-02  0.027795  2.640388 -0.866092 -1.642860
+    2  2000-01-03 -1.298852  2.205553 -1.189777 -1.829773
+    3  2000-01-04 -0.350564  0.717657 -1.497301 -3.179510
+    4  2000-01-05  1.732001  1.939669 -2.658425 -4.195840
+    5  2000-01-06  0.457319  2.281939 -1.612770 -4.582275
+    6  2000-01-07  0.571856  2.053347 -3.937807 -5.300862
+    7  2000-01-08  3.242640  2.280455 -4.378306 -5.054595
+    8  2000-01-09  2.884421  2.906835 -3.156276 -5.133953
+    9  2000-01-10  2.486527  3.205170 -3.407170 -5.450735
+    
